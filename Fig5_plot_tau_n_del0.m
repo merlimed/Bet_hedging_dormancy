@@ -1,4 +1,3 @@
-%stoch_temp = zeros(n_env, n_k, n_delays, 2);
 clc
 clear
 load 'Data/stoch_opt_refined.mat'
@@ -10,6 +9,7 @@ k_vals = [[1, -1, -1, -1]; [1, 2, 3, -1]; [1, 2, 4, 5]; [1, 2, 6, 7];...
     [1, 2, 8, 9]; [1, 2, 18, 19]];
 %% Plot delay 0 against k and mu
 stoch_temp = stoch_temp_new;
+% Define colors and plot parameters
 b1 = [0, 0.4470, 0.7410];
 b2 = [87, 147, 201]/255;
 b3 = [140, 183, 218]/255;
@@ -35,9 +35,9 @@ plot(env_mu, stoch_temp(:,4,del_index,1), lt,'LineWidth', 2, ...
     'MarkerEdgeColor', b4, 'MarkerFaceColor', b4,'MarkerSize', ms, ...
     'Color', b4)
 
-legend('inverse estimate', 'm = 1', 'm = 2','m = max-2', ...
-    'm = max-1')
-xlabel('Environmental mean \tau')
+legend('inverse estimate', '\kappa = 1', '\kappa = 2','\kappa = max-2', ...
+    '\kappa = max-1')
+xlabel('Mean residence time \tau')
 ylabel('Switching probability')
 set(gca, 'Fontsize', 16)
 ylim([0 .5])
@@ -72,7 +72,7 @@ plot(1:4, stoch_temp(6,:,del_index,2), lt, 'LineWidth', 2, 'Color', o5, ...
 
 legend('\tau = 2', '\tau = 4','\tau = 6', ...
     '\tau = 8', '\tau = 10', '\tau = 20')
-xlabel('Environmental predictability m')
+xlabel('Minimum residence time \kappa')
 ylabel('Switching probability')
 set(gca, 'Fontsize', 16)
 ylim([0 .5])

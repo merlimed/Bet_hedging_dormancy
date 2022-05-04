@@ -1,46 +1,46 @@
+% In this file we reevaluate the optimal dormancy switching proabilities based
+% on the results from find_optimal_stoch. We increase the resolution and
+% compute the lyapunov exponent in a small vecinity of the values
+% previously obtained
+
 clc
 clear
 
 addpath Functions
+load 'Data/parameters.mat'
+load Data/stoch_opt_41vals_100runs.mat
 %%
 %here we use the estimates from find_optimal_stoch to limit the search area
 %for optimal probabilities and do more runs 
 %Define variables and parameters
-pars.r = 2; % reproduction rate during good times
-pars.p = 0.5; % overall probability of a bad event
+
 pars.n = 500; % number of events
-pars.w = .5; % percentage of A and transition states which survives during bad times
-disp(pars.p * pars.r/(pars.r-1) - (1-pars.p) * pars.w/(1-pars.w)) % theor optimal in kelly theory
 n_runs = 1000;
-init_v = 10^2;
-pars.lam = 1;
 
 delays = [0, 1, 2, 4, 6, 8, 10];
 n_delays = length(delays);
-vals = linspace(0, 1, 41);
-env_mu = [2, 4, 6, 8, 10, 20];
-n_env = length(env_mu);
+tau_vals = [2, 4, 6, 8, 10, 20];
+n_tau = length(tau_vals);
 
-%m_vals(i,j) is the number of transition states for m(i) and tau(j) 
-m_vals = [[1, -1, -1, -1]; [1, 2, 2, 3]; [1, 2, 4, 5]; [1, 2, 6, 7];...
+%k_vals(i,j) is the number of transition states for k(i) and tau(j) 
+k_vals = [[1, -1, -1, -1]; [1, 2, 2, 3]; [1, 2, 4, 5]; [1, 2, 6, 7];...
     [1, 2, 8, 9]; [1, 2, 18, 19]];
-n_m = 4; %number of vals for m
-load Data/stoch_opt_41vals_100runs.mat
-dv = 0.025;
+n_k = 4; %number of vals for k
+dv = 0.025; % resolution step
 %%
-stoch_temp_new = zeros(n_env, n_m, n_delays, 2); %optimal switching x and y
+stoch_temp_new = zeros(n_tau, n_k, n_delays, 2); %optimal switching x and y
 tic
 count = 1;
-for i_env = 1:n_env
-    for i_m = 1:n_m
+for i_env = 1:n_tau
+    for i_m = 1:n_k
         L_temp = zeros(n_delays, 5, 5);
-        if m_vals(i_env, i_m) == -1
+        if k_vals(i_env, i_m) == -1
             opt_switch = NaN(n_delays, 2);
         else
             for i_run = 1:n_runs
-                k_good = m_vals(i_env, i_m);
-                k_bad = m_vals(i_env, i_m);
-                env = env_gamma(env_mu(i_env), env_mu(i_env), k_good, k_bad, pars.n);
+                k_good = k_vals(i_env, i_m);
+                k_bad = k_vals(i_env, i_m);
+                env = env_gamma(tau_vals(i_env), tau_vals(i_env), k_good, k_bad, pars.n);
                 for i_delay = 1:n_delays
                     t = ones(1, delays(i_delay) + 2);
                     opt_x = stoch_temp(i_env,i_m, i_delay, 1);
