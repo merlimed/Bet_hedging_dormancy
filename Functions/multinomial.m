@@ -1,7 +1,8 @@
-%This function computes the probability that length(rates) events with 
-%probabilities rates yield j correct events
-%rates. size is k
+% This function takes rates, a vector of probabilities for binary independent
+% variables and computes the probability that j events occur. It uses a
+% recursive algorithm
 function y = multinomial(rates, j)
+    % end of recursive algorithm
     if j == 0
         y = 1;
     else

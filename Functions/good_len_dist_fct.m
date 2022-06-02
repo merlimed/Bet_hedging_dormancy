@@ -1,3 +1,5 @@
+%Takes environmentla input 0,1 vector and returns the distribution of 
+%1 in the vector (good environment)
 function dist = good_len_dist_fct(env)
 curr_length = 0;
 dist_ind = 1;

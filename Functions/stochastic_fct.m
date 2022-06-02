@@ -1,6 +1,8 @@
 %Stochastic dormany function
 %This function takes in init_v meaning how many cells are in each state
 %from A - D1 - D2 -...- Dn, env parameters of length n and parameters pars
+%and return the total number of cells at each time step given environmental
+%conditions env 
 function w_final = stochastic_fct(env, pars)
     w_final = -1 * ones(1, pars.n); %number of steps at every step
     n_t = length(pars.t); %total number of states

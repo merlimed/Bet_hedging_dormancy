@@ -1,14 +1,14 @@
-% For this figure we compute the two fitness maps for a population with no
-% delays to enter dormancy and for a population with delay 1
+% For this figure we plot the two fitness maps we computed
+% Fig3_4_compute_two_heatmaps
 clc
 clear
-load('Data/heatmap_nodelay.mat')
-load('Data/heatmap_onedelay.mat')
+load 'Data/heatmap_nodelay.mat'
+load 'Data/heatmap_onedelay.mat'
+load 'Data/parameters.mat'
 
-xy_vals = linspace(0, 1, 41);% all values for x and y
-vals_short = linspace(0, 1, 11); 
-n_val = length(xy_vals); %tick values for x and y
-
+xy_vals = pars.xy_vals; % all values for x and y
+n_val = length(xy_vals); % tick values for x and y
+vals_short = linspace(0, 1, 11); % values for x and yticks
 %% Define color map
 my_c = spring;
 my_c(1:150,1) = linspace(.7, 1, 150);
@@ -22,14 +22,14 @@ my_c(:,3) = my_c(:,3)./linspace(1.8, 1, 256)';
 yvals = [1, .95, .9, .85, .8, .75, .7, .65, .6, .55, .5, .45, .4, .35, ...
     .3, .25, .2, .15, .1, .05, 0];
 yvals_short = [1, .9, .8, .7, .6, .5, .4, .3, .2, .1, 0];
-figure('Position', [200 350 1050 370])
+figure('Position', [200 350 930 320])
 subplot(1,2,1)
 ax1 = gca;
 clims = [0, max(max(L_fin))];
 imagesc(ax1, flipud(L_fin), clims);
 colormap(ax1, my_c)
 hold on 
-plot(y0_max, n_val +1 - x0_max, 'rx', 'LineWidth', 3, 'MarkerSize', 14)
+plot(y0_max, n_val +1 - x0_max, 'rx', 'LineWidth', 2.5, 'MarkerSize', 12)
 
 set(ax1, 'FontSize', 14)
 ax1.XTick = 1 + vals_short * (n_val - 1);
@@ -47,7 +47,7 @@ ax2 = gca;
 clims = [0, max(max(L_fin))];
 imagesc(ax2, flipud(L_fin_delay), clims);
 hold on
-plot(y1_max, n_val + 1 - x1_max, 'rx', 'LineWidth', 3, 'MarkerSize', 14)
+plot(y1_max, n_val + 1 - x1_max, 'rx', 'LineWidth', 2.5, 'MarkerSize', 12)
 colormap(ax2, my_c)
 
 ax2.XTick = 1 + vals_short * (n_val - 1);

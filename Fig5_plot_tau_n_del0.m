@@ -1,13 +1,14 @@
+% In this script we plot the optimal switching probabilities for delay 0
+% which we computed from find_optmal_stoch and refine_opt_stoch
 clc
 clear
 load 'Data/stoch_opt_refined.mat'
+load Data/parameters.mat
 %%
-% order of dimensions is environment, k, delay, x y
-delays = [0, 1, 2, 4, 6, 8, 10];
-env_mu = [2, 4, 6, 8, 10, 20];
-k_vals = [[1, -1, -1, -1]; [1, 2, 3, -1]; [1, 2, 4, 5]; [1, 2, 6, 7];...
-    [1, 2, 8, 9]; [1, 2, 18, 19]];
-%% Plot delay 0 against k and mu
+delays = pars.delays;
+env_tau = pars.env_tau;
+%% Plot delay 0 against k and tau
+% stoch temp has 4 dimensions tau, kappa, delay, x y
 stoch_temp = stoch_temp_new;
 % Define colors and plot parameters
 b1 = [0, 0.4470, 0.7410];
@@ -21,17 +22,17 @@ figure('Position', [230 230 920 370])
 del_index = 1;
 subplot(1,2,1)
 hold on 
-plot(env_mu, 1./env_mu, '--', 'LineWidth', 2.5, 'Color', [0 0 1 .7])
-plot(env_mu, stoch_temp(:,1,del_index,1), lt,'LineWidth', 2, ...
+plot(env_tau, 1./env_tau, '--', 'LineWidth', 2.5, 'Color', [0 0 1 .7])
+plot(env_tau, stoch_temp(:,1,del_index,1), lt,'LineWidth', 2, ...
     'MarkerEdgeColor', b1, 'MarkerFaceColor', b1, 'MarkerSize', ms, ...
     'Color', b1)
-plot(env_mu, stoch_temp(:,2,del_index,1), lt,'LineWidth', 2, ...
+plot(env_tau, stoch_temp(:,2,del_index,1), lt,'LineWidth', 2, ...
     'MarkerEdgeColor', b2, 'MarkerFaceColor', b2 ,'MarkerSize', ms, ...
     'Color', b2)
-plot(env_mu, stoch_temp(:,3,del_index,1), lt,'LineWidth', 2,...
+plot(env_tau, stoch_temp(:,3,del_index,1), lt,'LineWidth', 2,...
     'MarkerEdgeColor', b3, 'MarkerFaceColor', b3, 'MarkerSize', ms, ...
     'Color', b3)
-plot(env_mu, stoch_temp(:,4,del_index,1), lt,'LineWidth', 2, ...
+plot(env_tau, stoch_temp(:,4,del_index,1), lt,'LineWidth', 2, ...
     'MarkerEdgeColor', b4, 'MarkerFaceColor', b4,'MarkerSize', ms, ...
     'Color', b4)
 
@@ -43,8 +44,8 @@ set(gca, 'Fontsize', 16)
 ylim([0 .5])
 xlim([2, 20])
 ax = gca;
-ax.XTick = env_mu;
-ax.XTickLabels = env_mu;
+ax.XTick = env_tau;
+ax.XTickLabels = env_tau;
 
 title('Optimal switching (x* = y*)')
 grid on

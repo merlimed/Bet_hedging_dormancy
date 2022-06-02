@@ -1,5 +1,8 @@
 % This script computes the population dynamics for stochastic bethedging
 % with x = y and env with average duration of good = bad = 2
+% There is a lot of stochasticity when simulating environmental conditions
+% so it is unlikely to get exactly the same figure as the one in the
+% manuscript
 clc
 clear
 addpath Functions
@@ -7,6 +10,7 @@ load 'Data/parameters.mat'
 %% 
 % We compute the trajectories for different values of dormancy initiation
 % and resuscitaiton pairs (x,y) where x = y
+pars.n = 50;
 n_vals = 11; % number of xy pairs
 xy_vals = linspace(0, 1, n_vals); % values of dorm transition probabilities
 t_dyn = zeros(n_vals, pars.n); % time trajectories for all values of x=y

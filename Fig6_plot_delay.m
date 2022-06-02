@@ -1,25 +1,26 @@
-%stoch_temp = zeros(n_env, n_k, n_delays, 2);
+% In this script we plot the optimal switching for delayed dormancy
+% which we computed from find_optmal_stoch and refine_opt_stoch
 clc
 clear
-load 'Data/stoch_opt_refined.mat'
+load Data/stoch_opt_refined.mat
 load Data/opt_fitness.mat
+load Data/parameters.mat
 %%
 % order of dimensions is environment, k, delay, x y
-delays = [0, 1, 2, 4, 6, 8, 10];
-env_mu = [2, 4, 6, 8, 10, 20];
-k_vals = [[1, -1, -1, -1]; [1, 2, 3, -1]; [1, 2, 4, 5]; [1, 2, 6, 7];...
-    [1, 2, 8, 9]; [1, 2, 18, 19]];
+delays = pars.delays;
 %% Plot delay 0 against k and mu
 ms = 8;
 lt = '-o';
-lw = 2.5;
+lw = 2.5; %linewidth
+% colors
 b1 = [0, 0.4470, 0.7410];
 b2 = [87, 147, 201]/255;
 b3 = [140, 183, 218]/255;
 b4 = [196, 218, 236]/255;
 stoch_temp = stoch_temp_new;
+
 figure('Position', [450 400 920 370])
-k_index = 3;
+k_index = 3; % we plot this figure for kappa = max-2
 subplot(1,2,1)
 temp = reshape(stoch_temp(:,k_index,:,1), [6, 7]);
 
@@ -52,7 +53,7 @@ o2 = [210, 122, 80]/255;
 o3 = [219 155 122]/255;
 o4 = [231 188 166]/255;
 o5 = [243 223 210]/255;
-temp_opt = reshape(L_opt(:,k_index,:), [6, 7]);
+temp_opt = reshape(opt_fitness(:,k_index,:), [6, 7]);
 
 %L_opt = zeros(n_env, n_k, n_delays);
 hold on

@@ -1,4 +1,3 @@
-    
 % returns pdf for n events with different probabilities called rates and 
 % k occurences 
 function final_dist = transition_time_dist(rates, n)
