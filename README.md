@@ -1,10 +1,14 @@
 # Bet_hedging_dormancy
+To generate any of the figures, path_setup needs to be ran first.
+
 The files in this folder are organized as follows:
- - 4 files '.m' starting with 'C_' which generate all the files in folder 'Data'
- - Functions folder which has all necessary functions to run all the scripts, 
-    inlcuding a 'set_parameters.m' in which the parameters 'pars' can be changed
- - 6 'Fig' scripts and one 'Supp1' script which generate all the figures aside from the schematic
- - Figs folder which has all the figrues in pdf and ppx format
+- path_setup.m which needs to be ran first to set the path to current directory
+- Manuscript which contains the latest version of the article in pdf form
+- Generate figs which has all necessary code to generate all the figures
+- Generate Data which has all necessary code to generate all the data for the figures
+- Functions which has all the functions needed for Generate Data
+- Figs which stores the final figures in the manuscript
+- Data which sores the data generated in the scripts of Generate Data
 
 To run the scripts from scratch, including generating the Data files, the 
 number of runs can be changed in 'set_parameters.m'. With pars.n_runs = 1000
