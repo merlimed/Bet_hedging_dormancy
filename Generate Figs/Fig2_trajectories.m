@@ -72,12 +72,12 @@ ind3 = find(xy_vals>= .9, 1);
 plot(1:pars.n, t_dyn(ind1,:), 'LineWidth', 3, 'Color', [0, 0.247, 0.941])
 plot(1:pars.n, t_dyn(ind2,:), 'LineWidth', 3, 'Color', [0, 0.447, 0.741])
 plot(1:pars.n, t_dyn(ind3,:), 'LineWidth', 3, 'Color', [0.301, 0.745, 0.933])
-legend('x = y = .1','x = y = .5', 'x = y = .9', 'location', 'SE')
+legend('x = y = 0.1','x = y = 0.5', 'x = y = 0.9', 'location', 'SE')
 ylim([10^1*5, max_val])
 set(gca, 'Fontsize', 16)
 set(gca, 'YScale', 'log')
 xlabel('Time')
-ylabel('Population Size')
+ylabel('Population size')
 
 subplot(1,2,2)
 hold on
@@ -91,11 +91,10 @@ plot(xy_vals(ind2), L_vals(ind2), 'x', 'LineWidth', 3, 'MarkerSize', 16, 'Color'
 plot(xy_vals(ind3), L_vals(ind3), 'x', 'LineWidth', 3, 'MarkerSize', 16, 'Color', [0.301, 0.745, 0.933])
 xlim([0-0.05, 1+.05])
 ylim([min(L_vals)-0.005, max(L_vals)+0.005])
-legend('x = y = .1','x = y = .5', 'x = y = .9', 'location', 'S', 'Box','off')
+legend('x = y = 0.1','x = y = 0.5', 'x = y = 0.9', 'location', 'S', 'Box','off')
 set(gca, 'Fontsize', 16)
-xlabel('Switching probability (x = y)')
+xlabel('Transition probability (x = y)')
 ylabel('Lyapunov exponent')
-
-            
-            
+%%
+%save('Data/env.mat', 'env')
             

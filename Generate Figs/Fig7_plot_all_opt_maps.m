@@ -154,7 +154,7 @@ to_plot = temp_x;
 h3 = heatmap(xvalues, yvalues, to_plot, 'ColorMap', my_c, 'MissingDataColor',[1 1 1]);
 h3.YDisplayData=flip(h3.YDisplayData);
 h3.XLabel = 'Delay n';
-h3.Title = '\kappa = m-2';
+h3.Title = '\kappa = \tau-2';
 set(gca, 'FontSize', 16)
 h3.ColorLimits = colorbar_lim;
 h3.ColorbarVisible = 'off';
@@ -171,7 +171,7 @@ h4 = heatmap(xvalues, yvalues, to_plot, 'ColorMap', my_c, 'MissingDataColor',[1 
     , 'MissingDataLabel', 'unfeasible');
 h4.YDisplayData=flip(h4.YDisplayData);
 h4.XLabel = 'Delay n';
-h4.Title = '\kappa = m-1';
+h4.Title = '\kappa = \tau-1';
 set(gca, 'FontSize', 16)
 h4.ColorLimits = colorbar_lim;
 axs = struct(h4); %ignore warning that this should be avoided

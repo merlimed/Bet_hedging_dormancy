@@ -37,14 +37,14 @@ plot(delays, temp(5,:), lt, 'LineWidth', lw, 'Color', b4, 'MarkerSize', ms, ...
 
 legend('\tau = 4', '\tau = 6','\tau = 8', '\tau = 10')
 xlabel('Delay to reach dormancy n')
-ylabel('Switching probability')
+ylabel('Transitioning probability')
 set(gca, 'Fontsize', 16)
 ylim([0 .3])
 xlim([0, 10])
 ax = gca;
 ax.XTick = delays;
 ax.XTickLabels = delays;
-title('Optimal switching (x*=y*)')
+title('Optimal transitioning (x*)')
 grid on
 
 subplot(1,2,2)

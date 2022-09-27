@@ -55,7 +55,7 @@ plot(mean(g_dist) * ones(1,10), linspace(0,1,10),'--','Color', [0.2 0.2 0.9] ,'L
 set(gca, 'Fontsize', 16)
 ylim([0 0.45])
 xlim([0 pdf_len])
-title('\kappa = m-2 (4), \tau = 6')
+title('\kappa = \tau-2 (4), \tau = 6')
 legend('Simulation', 'Theory', 'Simulation mean')
 
 nexttile
@@ -71,7 +71,7 @@ plot(mean(g_dist) * ones(1,10), linspace(0,1,10),'--','Color', [0.2 0.2 0.9] ,'L
 set(gca, 'Fontsize', 16)
 ylim([0 0.45])
 xlim([0 pdf_len])
-title('\kappa = m - 1 (5), \tau = 6')
+title('\kappa = \tau - 1 (5), \tau = 6')
 legend('Simulation', 'Theory', 'Simulation mean')
 
 xlabel(t, 'Residence time', 'FontSize', 20)
